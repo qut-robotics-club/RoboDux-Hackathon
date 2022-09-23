@@ -1,2 +1,2 @@
 # RoboDux-Hackathon
-Our submission for the WIT Hackathon
+Our submission for the WIT Hackathon :)
