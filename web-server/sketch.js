@@ -2,7 +2,7 @@ let points = [[0, 0, false]];
 let pendown = false
 let livemode = false
 
-let socket = new WebSocket("ws://131.181.113.203:8000");
+let socket = new WebSocket("ws://www.veleriumproject.com:8000");
 
 socket.onopen = function(e) {
   console.log("SHE WORKS BWOIIIIIIIIII")

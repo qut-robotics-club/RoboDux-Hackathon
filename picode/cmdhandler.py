@@ -9,7 +9,7 @@ class cmdlink():
     def __init__(self) -> None:
         self.insocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # self.insocket.setblocking(False)
-        self.ip = ("127.0.0.1", 4576)
+        self.ip = ("www.veleriumproject.com", 4576)
         self.isConnected = True
 
     def connect(self) -> bool:

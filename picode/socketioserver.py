@@ -46,7 +46,7 @@ async def handler(websocket):
     finally:
         CLIENTS.remove(websocket)
 
-start_server = websockets.serve(handler, "131.181.113.203", 8000)
+start_server = websockets.serve(handler, "www.veleriumproject.com", 8000)
 
 
 asyncio.get_event_loop().run_until_complete(start_server)
