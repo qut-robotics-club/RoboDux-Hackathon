@@ -5,7 +5,7 @@ import json
 from cmdhandler import HEADERSIZE
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_socket.bind(("www.veleriumproject.com", 4576))
+server_socket.bind(("localhost", 4576))
 
 server_socket.listen()
 
