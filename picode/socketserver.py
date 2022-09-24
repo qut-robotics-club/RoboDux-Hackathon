@@ -59,11 +59,9 @@ while True:
                 del clients[notifiedSocket]
                 continue
             else:
-                msgdata = json.loads(msg['data'])
+                msgdata = json.loads(msg['data'].decode("UTF-8"))
+                clientType = clients[notifiedSocket]
 
-            clientType = clients[notifiedSocket]
-
-            if clientType['data'] == "client":
-                if "path" in msgdata:
-                    print("path received")
-                print(msgdata)
+                if clientType['data'].decode("UTF-8") == "client":
+                    if "path" in msgdata:
+                        print("path received")
