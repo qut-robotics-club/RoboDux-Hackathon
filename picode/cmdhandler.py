@@ -13,8 +13,11 @@ class cmdlink():
         self.isConnected = True
 
     def connect(self) -> bool:
+        message = "client"
+        header = f"{len(message):<{HEADERSIZE}}".encode('UTF-8')
         try:
             self.insocket.connect(self.ip)
+            self.insocket.send(header + message.encode("UTF-8"))
             self.isConnected = True
         except IOError as e:
             pass

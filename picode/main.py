@@ -1,5 +1,6 @@
 import cmdhandler
 import mobility
+import json
 
 pathMode = True
 curpath = []
@@ -13,8 +14,11 @@ if __name__ == "__main__":
             command = networkingstuff.handleMsg()
             if "pathmode" in command:
                 pathMode = command["pathmode"]
+                print(pathMode)
             elif "path" in command:
-                curpath.append(command["path"])
+                waypoints = command["path"]
+                for waypoint in waypoints:
+                    curpath.append(waypoint)
             
             if len(curpath) > 0:
                 isMoving = True

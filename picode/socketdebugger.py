@@ -1,7 +1,5 @@
-from email import header
 import socket
-import pickle
-import os
+import json
 
 from cmdhandler import HEADERSIZE
 
@@ -12,6 +10,10 @@ if __name__ == "__main__":
     print(f"listening to: {s}")
     sock, addr = s.accept()
     print(f"Connection accepted by: {addr}")
-    msg = "Nice! It works!!"
+    cmd = {"path": [[1,2,True],
+                    [1,2,True],
+                    [1,2,False],
+                    [1,2,True]]}
+    msg = json.dumps(cmd)
     msgHeader = f"{len(msg):<{HEADERSIZE}}".encode("UTF-8")
     sock.send(msgHeader + msg.encode("UTF-8"))
