@@ -64,4 +64,4 @@ while True:
 
                 if clientType['data'].decode("UTF-8") == "client":
                     if "path" in msgdata:
-                        print("path received")
+                        print(f"path received {msgdata['path']}")

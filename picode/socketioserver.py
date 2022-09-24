@@ -15,16 +15,38 @@ except IOError as e:
 except Exception as e:
     print(e)
 
+CLIENTS = set()
 
-async def handler(websocket, path):
+# async def handler(websocket, path):
+#     while True:
+#         data = await websocket.recv()
+#         header = f"{len(data):<{HEADERSIZE}}".encode('UTF-8')
+#         s.send(header + data.encode("UTF-8"))
+#         await websocket.send(data)
 
-    data = await websocket.recv()
+async def send(websocket, message):
+    try:
+        await websocket.send(message)
+    except websockets.ConnectionClosed:
+        pass
 
-    reply = f"Data recieved as:  {data}!"
+def broadcast(message):
+    for websocket in CLIENTS:
+        asyncio.create_task(send(websocket, message))
 
-    await websocket.send(reply)
+async def handler(websocket):
+    CLIENTS.add(websocket)
+    try:
+        async for _ in websocket:
+            data = await websocket.recv()
+            header = f"{len(data):<{HEADERSIZE}}".encode('UTF-8')
+            s.send(header + data.encode("UTF-8"))
+            # await websocket.send(data)
+            broadcast(data)
+    finally:
+        CLIENTS.remove(websocket)
 
-start_server = websockets.serve(handler, "localhost", 8000)
+start_server = websockets.serve(handler, "131.181.113.203", 8000)
 
 
 asyncio.get_event_loop().run_until_complete(start_server)
