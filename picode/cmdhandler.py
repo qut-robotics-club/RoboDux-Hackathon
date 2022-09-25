@@ -9,11 +9,11 @@ class cmdlink():
     def __init__(self) -> None:
         self.insocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # self.insocket.setblocking(False)
-        self.ip = ("www.veleriumproject.com", 4576)
+        self.ip = ("localhost", 4576)
         self.isConnected = True
 
     def connect(self) -> bool:
-        message = "client"
+        message = "driver"
         header = f"{len(message):<{HEADERSIZE}}".encode('UTF-8')
         try:
             self.insocket.connect(self.ip)

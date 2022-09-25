@@ -12,6 +12,7 @@ server_socket.listen()
 sockets_list = [server_socket]
 
 clients = {}
+driverClient = []
 
 print("Listening for connections....")
 
@@ -47,6 +48,8 @@ while True:
                 continue
             
             sockets_list.append(sock)
+            if clientType["data"].decode("UTF-8") == "driver":
+                driverClient = sock
             clients[sock] = clientType
 
             print(f"Accepted new connection from {addr} of type {clientType['data']}")
@@ -65,3 +68,6 @@ while True:
                 if clientType['data'].decode("UTF-8") == "client":
                     if "path" in msgdata:
                         print(f"path received {msgdata['path']}")
+                        header = f"{len(msg['data']):<{HEADERSIZE}}".encode('UTF-8')
+                        driverClient.send(header + msg["data"])
+

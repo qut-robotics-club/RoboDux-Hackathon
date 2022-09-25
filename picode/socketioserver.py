@@ -1,6 +1,7 @@
 import asyncio
 import websockets
 import socket
+import json
 
 from cmdhandler import HEADERSIZE
 
@@ -39,8 +40,10 @@ async def handler(websocket):
     try:
         async for _ in websocket:
             data = await websocket.recv()
-            header = f"{len(data):<{HEADERSIZE}}".encode('UTF-8')
-            s.send(header + data.encode("UTF-8"))
+            dataJson = json.loads(data)
+            if 'publish' in dataJson:
+                header = f"{len(data):<{HEADERSIZE}}".encode('UTF-8')
+                s.send(header + data.encode("UTF-8"))
             # await websocket.send(data)
             broadcast(data)
     finally:

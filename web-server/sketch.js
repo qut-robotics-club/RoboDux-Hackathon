@@ -1,8 +1,9 @@
 let points = [[0, 0, false]];
 let pendown = false
 let livemode = false
+let pubButton;
 
-let socket = new WebSocket("ws://www.veleriumproject.com:8000");
+let socket = new WebSocket("ws://localhost:8000");
 
 socket.onopen = function(e) {
   console.log("SHE WORKS BWOIIIIIIIIII")
@@ -24,6 +25,9 @@ function setup() {
 
 function draw() {
   background(220);
+  pubButton = createButton('Publish');
+  pubButton.position(0, 0);
+  pubButton.mousePressed(publishPath);
   if(mouseIsPressed) {
     points.push([mouseX, mouseY, true])
   }
@@ -57,6 +61,14 @@ function mouseReleased() {
   pendown = false
   points.push([mouseX, mouseY, false])
   data = {'path': points}
+  socket.send(JSON.stringify(data))
+  socket.send(JSON.stringify(data))
+}
+
+function publishPath() {
+  data = {'publish': true,
+          'path': points
+  }
   socket.send(JSON.stringify(data))
   socket.send(JSON.stringify(data))
 }

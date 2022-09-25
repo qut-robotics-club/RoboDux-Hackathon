@@ -1,3 +1,4 @@
+from turtle import goto
 import cmdhandler
 import mobility
 import json
@@ -9,6 +10,7 @@ isMoving = False
 if __name__ == "__main__":
     networkingstuff = cmdhandler.cmdlink()
     networkingstuff.connect()
+    mobilityHandler = mobility.Mobility()
     while True:
         if not isMoving:
             command = networkingstuff.handleMsg()
@@ -19,8 +21,16 @@ if __name__ == "__main__":
                 waypoints = command["path"]
                 for waypoint in waypoints:
                     curpath.append(waypoint)
+                print(curpath)
             
             if len(curpath) > 0:
                 isMoving = True
         else:
-            pass
+            if(len(curpath) > 0):
+                for point in curpath:
+                    while True:
+                        mobilityHandler.goto(point)
+                        if mobilityHandler.arrived():
+                            break
+                isMoving = False
+                curpath = []

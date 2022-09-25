@@ -1,0 +1,118 @@
+body {
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  background: #2229ad;
+  color: #fff;
+  padding: 10px 10px 1px;
+}
+
+footer {
+  background: #222;
+  padding: 140px;
+  text-align: center;
+  color: #d8d8d8;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav {
+  width: 80%;
+  display: inline-block;
+  text-align: right;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 5px 15px;
+  border-radius: 3px;
+  transition: 0.3s ease all;
+}
+nav ul li a:hover {
+  background: #444;
+}
+
+.wenM__title {
+  font-size: 100px;
+  margin: 0;
+  font-family: "Wenvolcano-infor", serif;
+}
+.wenM__subtitle {
+  font-size: 40px;
+  font-style: italic;
+}
+
+.wenM {
+  min-height: 800px;
+  text-align: center;
+  background-image: url("WIT_backgroud.jpg");
+  background-size: cover;
+}
+
+.wenM__content {
+  color: #ffffff;
+  padding-top: 25px;
+}
+
+.wenM__content a {
+  display: inline-block;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 3px;
+  padding: 15px 30px;
+  margin-right: 20px;
+  text-decoration: none;
+  font-size: 28px;
+  transition: transform 1s;
+}
+.wenM__content a:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.features__box-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.features__box {
+  text-align: center;
+  flex: 1;
+  margin-left: 5px;
+}
+
+.features__box img {
+  margin-bottom: 12px;
+  width: 80px;
+}
+.features__box h5 {
+  font-size: 20px;
+  color: #999;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* Responsive columns */
+@media (max-width: 700px) {
+  .features__box-wrapper {
+    flex-wrap: wrap;
+  }
+  .features__box {
+    flex: 1 100%;
+  }
+}
