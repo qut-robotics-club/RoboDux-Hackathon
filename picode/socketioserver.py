@@ -8,7 +8,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 message = "client"
 header = f"{len(message):<{HEADERSIZE}}".encode('UTF-8')
 try:
-    s.connect(("www.veleriumproject.com", 4576))
+    s.connect(("localhost", 4576))
     s.send(header + message.encode("UTF-8"))
 except IOError as e:
     pass
