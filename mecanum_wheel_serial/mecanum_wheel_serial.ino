@@ -16,6 +16,26 @@ void setup() {
 Serial.begin(9600);
 }
 
+unsigned long m1LastPulse = millis();
+unsigned long m2LastPulse = millis();
+unsigned long m3LastPulse = millis();
+unsigned long m4LastPulse = millis();
+
+unsigned long m1curtime = millis();
+unsigned long m2curtime = millis();
+unsigned long m3curtime = millis();
+unsigned long m4curtime = millis();
+
+unsigned long m1waitTime = 0;
+unsigned long m2waitTime = 0;
+unsigned long m3waitTime = 0;
+unsigned long m4waitTime = 0;
+
+void spinMotor(int motorPin, double vel) {
+  Serial.println("Spinning motor");
+}
+
+
 void loop() {
   // put your main code here, to run repeatedly:
   //if (Serial.available() > 0) {

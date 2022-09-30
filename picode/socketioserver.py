@@ -41,11 +41,11 @@ async def handler(websocket):
         async for _ in websocket:
             data = await websocket.recv()
             dataJson = json.loads(data)
+            broadcast(data)
             if 'publish' in dataJson:
                 header = f"{len(data):<{HEADERSIZE}}".encode('UTF-8')
                 s.send(header + data.encode("UTF-8"))
-            # await websocket.send(data)
-            broadcast(data)
+            
     finally:
         CLIENTS.remove(websocket)
 
