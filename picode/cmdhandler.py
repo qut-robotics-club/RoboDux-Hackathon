@@ -4,12 +4,15 @@ import string
 import json
 
 HEADERSIZE = 10
+IP = "localhost"
+SOCKPORT = 4576
+WSPORT = 8000
 
 class cmdlink():
     def __init__(self) -> None:
         self.insocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         # self.insocket.setblocking(False)
-        self.ip = ("localhost", 4576)
+        self.ip = (IP, SOCKPORT)
         self.isConnected = True
 
     def connect(self) -> bool:

@@ -3,13 +3,13 @@ import websockets
 import socket
 import json
 
-from cmdhandler import HEADERSIZE
+from cmdhandler import HEADERSIZE, IP, SOCKPORT, WSPORT
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 message = "client"
 header = f"{len(message):<{HEADERSIZE}}".encode('UTF-8')
 try:
-    s.connect(("localhost", 4576))
+    s.connect((IP, SOCKPORT))
     s.send(header + message.encode("UTF-8"))
 except IOError as e:
     pass
@@ -49,7 +49,7 @@ async def handler(websocket):
     finally:
         CLIENTS.remove(websocket)
 
-start_server = websockets.serve(handler, "localhost", 8000)
+start_server = websockets.serve(handler, IP, WSPORT)
 
 
 asyncio.get_event_loop().run_until_complete(start_server)

@@ -2,10 +2,9 @@ import select
 import socket
 import json
 
-from cmdhandler import HEADERSIZE
-
+from cmdhandler import HEADERSIZE, IP, SOCKPORT
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_socket.bind(("localhost", 4576))
+server_socket.bind((IP, SOCKPORT))
 
 server_socket.listen()
 
